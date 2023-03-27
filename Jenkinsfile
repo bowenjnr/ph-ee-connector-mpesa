@@ -3,14 +3,13 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'mvn --version'
-                sh 'mvn -U clean package'
+                sh './gradle build'
             }
         }
         stage('docker') {
             steps {
-                sh 'docker build . -t paymenthubee.azurecr.io/phee/connector-channel'
-                sh 'docker push paymenthubee.azurecr.io/phee/connector-channel'
+                sh 'docker build . -t bowenjnr/phee:connector-mpesa'
+                sh 'docker push bowenjnr/phee:connector-mpesa'
             }
         }
     }
